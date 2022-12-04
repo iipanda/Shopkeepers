@@ -41,6 +41,7 @@ jobs:
         key: ${{ runner.os }}-jabba-${{ hashFiles('**/*.sh') }}
         restore-keys: |
           ${{ runner.os }}-jabba
+    - name: Build Shopkeepers
       run: ./build.sh
     # Upload workflow artifacts to allow the inspection of build results.
     # These are only retained for a few days.
