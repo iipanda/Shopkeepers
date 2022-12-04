@@ -41,18 +41,7 @@ jobs:
         key: ${{ runner.os }}-jabba-${{ hashFiles('**/*.sh') }}
         restore-keys: |
           ${{ runner.os }}-jabba
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar
-    - name: Build Shopkeepers
       run: ./build.sh
-    - name: Run SonarCloud analysis
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: ./gradlew sonarqube
     # Upload workflow artifacts to allow the inspection of build results.
     # These are only retained for a few days.
     - name: Stage artifacts for upload
