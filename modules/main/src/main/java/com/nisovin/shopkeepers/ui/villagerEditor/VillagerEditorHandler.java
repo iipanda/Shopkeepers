@@ -371,11 +371,9 @@ public final class VillagerEditorHandler extends AbstractEditorHandler {
 		TextUtils.sendMessage(player, Messages.villagerNameSet);
 	}
 
-	private static final int MAX_NAME_LENGTH = 128;
-
 	private boolean isValidName(String name) {
 		assert name != null;
-		return name.length() <= MAX_NAME_LENGTH;
+		return true;
 	}
 
 	protected Button createContainerButton() {

@@ -93,11 +93,6 @@ public abstract class AbstractShopkeeper implements Shopkeeper {
 
 	private static final String VIRTUAL_SHOPKEEPER_MARKER = "[virtual]";
 
-	// The maximum supported name length:
-	// The actual maximum name length that can be used might be lower depending on config settings
-	// and on shop object specific limits.
-	public static final int MAX_NAME_LENGTH = 256;
-
 	/**
 	 * We log a warning when a shopkeeper has more than this amount of snapshots.
 	 */
@@ -1162,24 +1157,11 @@ public abstract class AbstractShopkeeper implements Shopkeeper {
 		String preparedName = (name != null) ? name : "";
 		preparedName = TextUtils.colorize(preparedName);
 		preparedName = TextUtils.convertHexColorsToBukkit(preparedName);
-		preparedName = this.trimName(preparedName);
 		return preparedName;
 	}
 
-	private String trimName(String name) {
-		assert name != null;
-		if (name.length() <= MAX_NAME_LENGTH) {
-			return name;
-		}
-		String trimmedName = name.substring(0, MAX_NAME_LENGTH);
-		Log.warning(this.getLogPrefix() + "Name is more than " + MAX_NAME_LENGTH
-				+ " characters long ('" + name + "'). Name is trimmed to '" + trimmedName + "'.");
-		return trimmedName;
-	}
-
 	public boolean isValidName(@Nullable String name) {
-		return name != null && name.length() <= MAX_NAME_LENGTH
-				&& Settings.DerivedSettings.shopNamePattern.matcher(name).matches();
+		return name != null && Settings.DerivedSettings.shopNamePattern.matcher(name).matches();
 	}
 
 	// SHOP OBJECT
