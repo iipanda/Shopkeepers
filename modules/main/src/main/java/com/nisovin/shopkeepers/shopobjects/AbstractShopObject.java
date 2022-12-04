@@ -495,6 +495,11 @@ public abstract class AbstractShopObject implements ShopObject {
 	// NAMING
 
 	@Override
+	public int getNameLengthLimit() {
+		return Integer.MAX_VALUE;
+	}
+
+	@Override
 	public @Nullable String prepareName(@Nullable String name) {
 		if (name == null) return null;
 		return name;
